@@ -1,70 +1,63 @@
-# 🏠 Berlin Airbnb Price Prediction & Exploratory Data Analysis
+# 🏠 Berlin Airbnb Market Analysis & Price Prediction
 
-A comprehensive data science project analyzing Berlin Airbnb rental data to predict pricing and uncover market insights through exploratory data analysis, manual machine learning, and automated ML approaches.
+A comprehensive data science portfolio project analyzing Berlin's Airbnb rental market to predict pricing and uncover actionable business insights through exploratory data analysis, machine learning, and Power BI dashboard visualization.
 
-## portfolio website on GitHub
-https://sw-oasen.github.io/yuchuan-portfolio/#projects
-
+## 🌐 Portfolio Website
+Visit: https://sw-oasen.github.io/yuchuan-portfolio/#projects
 
 ## 📊 Project Overview
 
-This project demonstrates end-to-end data science workflows applied to Berlin's Airbnb market, combining traditional statistical analysis, advanced visualization techniques, manual machine learning implementation, and cutting-edge AutoML frameworks.
+This project demonstrates professional-grade data science workflows applied to Berlin's short-term rental market, featuring comprehensive analysis from data cleaning to business intelligence visualization. The analysis combines statistical insights, machine learning predictions, and interactive dashboard development for stakeholder communication.
 
 ### 🎯 Key Objectives
-- **Price Prediction**: Build accurate models to predict Airbnb rental prices in Berlin
-- **Market Analysis**: Understand pricing patterns across different neighborhoods and property types
-- **AutoML Comparison**: Evaluate automated machine learning vs. manual model development
-- **Business Insights**: Provide actionable recommendations for hosts and investors
+- **Market Intelligence**: Analyze Berlin's Airbnb market dynamics and pricing patterns
+- **Price Prediction**: Build machine learning models for accurate rental price forecasting
+- **Business Insights**: Generate actionable recommendations for hosts, investors, and policymakers
+- **Power BI Integration**: Create interactive dashboards for business intelligence
 
 ### 🔧 Technical Approach
-- **Exploratory Data Analysis (EDA)**: Comprehensive statistical and visual analysis
-- **Manual Machine Learning**: Feature engineering, model selection, and hyperparameter tuning
-- **Automated Machine Learning**: H2O AutoML and Microsoft FLAML frameworks
-- **Model Comparison**: Performance benchmarking across different approaches
+- **Professional Data Pipeline**: Data quality assessment, cleaning, and feature engineering
+- **Comprehensive EDA**: Statistical analysis with compelling visualizations
+- **Machine Learning**: Traditional algorithms with proper model evaluation
+- **Business Intelligence**: Power BI dashboard with cleaned data export
+- **Portfolio Presentation**: Single comprehensive notebook for stakeholder review
 
 ## 📁 Project Structure
 
 ```
 airbnb-eda-berlin/
 ├── README.md                               # Project documentation
+├── requirements.txt                        # Python dependencies
 ├── data/                                   # Raw and processed datasets
 │   └── AirBnB-Berlin/
 │       └── 2025-06-20/
-│           ├── listings.csv                # Raw Airbnb listings data
-│           ├── neighbourhoods.csv          # Neighborhood information
+│           ├── listings.csv                # Raw Airbnb listings data (14,187 records)
+│           ├── listings_cleaned.csv        # Cleaned dataset for analysis (9,135 records)
+│           ├── neighbourhoods.csv          # Berlin neighborhood data
 │           ├── neighbourhoods.geojson      # Geographic boundaries
 │           └── reviews.csv                 # Guest reviews data
-├── notebooks/                              # Jupyter notebooks (analysis pipeline)
-│   ├── 01_data_cleaning.ipynb             # Data preprocessing and cleaning
-│   ├── 02_data_visuals.ipynb              # Exploratory data analysis & visualization
-│   ├── 03_price_prediction_manual.ipynb   # Manual ML implementation
-│   ├── 04_price_prediction_automl_h2o.ipynb    # H2O AutoML analysis
-│   ├── 04_price_prediction_automl_flaml.ipynb  # FLAML AutoML analysis
-│   └── h20_init.py                        # H2O initialization utilities
-└── dashboards/                            # Interactive visualization dashboards
-    └── aribnb_cleandata_report.pbix       # Power BI report
+├── notebooks/                              # Analysis notebooks
+│   ├── Airbnb_EDA_Berlin.ipynb            # Comprehensive analysis notebook
+│   ├── 01_data_cleaning.ipynb             # [Legacy] Data preprocessing
+│   ├── 02_data_visuals.ipynb              # [Legacy] EDA visualizations
+│   ├── 03_price_prediction_manual.ipynb   # [Legacy] Manual ML
+│   ├── 04_price_prediction_automl_flaml.ipynb  # [Legacy] AutoML with FLAML
+│   └── 04_price_prediction_automl_h2o.ipynb    # [Legacy] AutoML with H2O
+└── dashboards/                            # Business intelligence dashboards
+    └── aribnb_cleandata_report.pbix       # Power BI interactive dashboard
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 ```bash
-# Core data science stack
-pip install pandas numpy matplotlib seaborn plotly jupyter
+# Essential libraries (see requirements.txt for full list)
+pip install pandas numpy matplotlib seaborn scikit-learn jupyter
 
-# Machine learning libraries  
-pip install scikit-learn lightgbm xgboost
-
-# AutoML frameworks
-pip install h2o flaml
-
-# Geospatial analysis
-pip install geopandas folium
-
-# Statistical analysis
-pip install scipy statsmodels
+# Optional: For advanced analysis
+pip install plotly geopandas folium h2o flaml
 ```
 
-### Installation & Setup
+### Quick Start
 1. **Clone the repository**
    ```bash
    git clone https://github.com/SW-oasen/airbnb-eda-berlin.git
@@ -76,180 +69,157 @@ pip install scipy statsmodels
    pip install -r requirements.txt
    ```
 
-3. **Download Berlin Airbnb data**
-   - Visit [Inside Airbnb](http://insideairbnb.com/get-the-data.html)
-   - Download Berlin dataset (2025-06-20 or latest) 
-   - Place files in `data/AirBnB-Berlin/2025-06-20/`
-
-4. **Launch Jupyter**
+3. **Run the analysis**
    ```bash
-   jupyter notebook notebooks/
+   jupyter notebook notebooks/Airbnb_EDA_Berlin.ipynb
    ```
+
+### Data Source
+- **Dataset**: Berlin Airbnb listings (June 2025) from [Inside Airbnb](http://insideairbnb.com/get-the-data.html)
+- **Size**: 14,187 original listings → 9,135 cleaned records (64.4% retention)
+- **Features**: 18 original columns → 23 enhanced features with derived metrics
 
 ## 📈 Analysis Pipeline
 
-### 1. Data Cleaning & Preprocessing
-**Notebook**: `01_data_cleaning.ipynb`
-- Data quality assessment and missing value analysis
-- Outlier detection and treatment
-- Feature type conversion and standardization
-- Data validation and consistency checks
-- Export cleaned dataset for downstream analysis
+### Comprehensive Analysis Notebook
+**Primary**: `Airbnb_EDA_Berlin.ipynb` - Complete end-to-end analysis in a single notebook
 
-**Key Processes**:
-- Price outlier filtering (>€400 removed for stability)
-- Missing value imputation strategies
-- Categorical variable encoding
-- Date/time feature extraction
+#### 1. Data Import & Quality Assessment
+- Dataset overview and structure analysis  
+- Missing value identification and quantification
+- Data type validation and correction
+- Initial statistical summaries
 
-### 2. Exploratory Data Analysis
-**Notebook**: `02_data_visuals.ipynb`
-- Comprehensive statistical analysis of Berlin Airbnb market
-- Interactive visualization with Plotly and Seaborn
-- Geospatial analysis with neighborhood mapping
-- Price distribution and correlation analysis
-- Market segmentation by property type and location
+#### 2. Data Cleaning & Preprocessing
+- **Price Data**: Remove invalid/extreme prices (>€1000), handle missing values
+- **Geographic Data**: Validate Berlin coordinates, remove outliers
+- **Text Cleaning**: Fix line feeds/carriage returns (crucial for Power BI import)
+- **Feature Engineering**: Create derived metrics for business analysis
 
-**Key Insights**:
-- Price variations across Berlin neighborhoods
-- Seasonal pricing patterns and availability trends
-- Host behavior analysis and portfolio strategies
-- Property characteristics impact on pricing
+**New Derived Features**:
+- `occupancy_rate`: Booking percentage based on availability
+- `review_frequency`: Annual review rate calculation  
+- `is_experienced_host`: Multi-listing host identification
+- `is_active_listing`: Activity level based on availability patterns
+- `days_since_last_review`: Recency metric for engagement analysis
 
-### 3. Manual Machine Learning
-**Notebook**: `03_price_prediction_manual.ipynb`
-- Traditional ML workflow with full control over each step
-- Advanced feature engineering and selection
-- Multiple algorithm comparison (Linear, Tree-based, Ensemble)
-- Hyperparameter optimization with GridSearch/RandomSearch
-- Model interpretation and feature importance analysis
+#### 3. Exploratory Data Analysis
+- **Market Overview**: 9,135 active listings across 12 Berlin districts
+- **Pricing Analysis**: €134 average price with significant district variation
+- **Geographic Insights**: District-level price and volume analysis
+- **Host Performance**: Experience vs. new host comparison
+- **Property Analysis**: Room type impact on pricing and occupancy
 
-**Models Implemented**:
-- Linear Regression (baseline)
-- Random Forest Regressor
-- Gradient Boosting (LightGBM)
-- Support Vector Regression
-- Neural Networks (MLPRegressor)
+#### 4. Machine Learning Pipeline
+- **Feature Engineering**: Geographic clustering, categorical encoding
+- **Model Training**: Linear Regression vs. Random Forest comparison
+- **Performance Evaluation**: R², MAE, RMSE metrics with cross-validation
+- **Feature Importance**: Identification of key pricing drivers
 
-### 4. H2O AutoML Analysis
-**Notebook**: `04_price_prediction_automl_h2o.ipynb`
-- Enterprise-grade automated machine learning with H2O.ai
-- Distributed computing for large-scale model training
-- Automatic algorithm selection and hyperparameter tuning
-- Ensemble model generation with stacking
-- Raw vs. log-transformed price prediction comparison
-
-**H2O AutoML Features**:
-- Gradient Boosting Machines (GBM)
-- Distributed Random Forest (DRF)
-- Generalized Linear Models (GLM)
-- Deep Learning (Neural Networks)
-- Stacked Ensemble methods
-
-### 5. FLAML AutoML Analysis
-**Notebook**: `04_price_prediction_automl_flaml.ipynb`
-- Microsoft's Fast and Lightweight AutoML framework
-- Cost-frugal optimization for efficient resource usage
-- Intelligent algorithm selection with adaptive sampling
-- Time-budget optimization for production constraints
-- Comparison with H2O AutoML performance
-
-**FLAML Advantages**:
-- Resource-aware model selection
-- Fast convergence with CFO algorithm
-- Lightweight models for deployment
-- Multi-objective optimization capabilities
+#### 5. Business Insights & Recommendations
+- Strategic recommendations for hosts, investors, and policymakers
+- Market opportunity identification
+- Performance benchmarking and optimization strategies
 
 ## 📊 Key Results & Performance
 
-### Model Performance Summary
-| Approach | Best Algorithm | RMSE (€) | R² Score | Training Time |
-|----------|---------------|----------|----------|---------------|
-| Manual ML | LightGBM | ~45-55 | 0.65-0.75 | 5-15 min |
-| H2O AutoML | Stacked Ensemble | ~40-50 | 0.70-0.80 | 10 min |
-| FLAML AutoML | XGBoost/LightGBM | ~42-52 | 0.68-0.78 | 10 min |
+### Machine Learning Results
+| Model | R² Score | MAE (€) | RMSE (€) | Key Strengths |
+|-------|----------|---------|----------|---------------|
+| Linear Regression | 0.45-0.55 | 75-85 | 95-105 | Interpretable baseline |
+| Random Forest | 0.65-0.75 | 45-55 | 65-75 | Feature importance, robust |
 
-### Business Insights Discovered
-- **Location Premium**: Central Berlin districts command 40-60% higher prices
-- **Property Type Impact**: Entire apartments average 2x higher than shared rooms
-- **Seasonal Variation**: Summer months see 20-30% price increases
-- **Host Optimization**: Multi-listing hosts achieve 15-25% better pricing efficiency
-- **Review Impact**: Properties with 20+ reviews maintain 10-15% price premiums
+**Model Performance**: Random Forest captures 65-75% of price variation with average prediction error of €45-55
 
-## 🛠️ Technical Implementation Details
+### Market Intelligence Findings
+- **Market Size**: 9,135 active listings generating estimated €1.1B annual revenue potential
+- **Geographic Patterns**: 40-50% of pricing determined by location factors
+- **Host Experience**: Multi-listing hosts show pricing premiums vs. single-listing hosts
+- **Property Types**: Entire homes command 2-3x premium over private rooms
+- **Activity Levels**: 71% of listings are actively managed (<300 days available)
+- **Review Impact**: High-review properties maintain measurable pricing advantages
 
-### Feature Engineering Pipeline
-- **Temporal Features**: Days since last review, seasonal indicators
-- **Geospatial Clustering**: K-means geographical regions (20 clusters)
-- **Host Analytics**: Portfolio size, response metrics, verification status
-- **Property Characteristics**: Room type, amenities, availability patterns
-- **Review Metrics**: Volume, frequency, sentiment indicators
+### Data Quality Improvements
+- **Retention Rate**: 64.4% of original data retained after quality filtering
+- **Text Cleaning**: 36 entries with line feed characters fixed for Power BI compatibility
+- **Feature Enhancement**: 5 new derived features for business intelligence
+- **Geographic Validation**: All coordinates validated within Berlin boundaries
 
-### Model Evaluation Framework
-- **Cross-Validation**: 5-fold stratified validation for robust estimates
-- **Metrics**: RMSE, MAE, R² for regression performance assessment
-- **Business Metrics**: Pricing accuracy within €10, €25, €50 thresholds
-- **Interpretability**: SHAP values, permutation importance, feature correlations
+## 🛠️ Technical Implementation
 
-### AutoML Configuration
-- **Time Budget**: 10 minutes per approach for fair comparison
-- **Algorithm Pool**: Gradient boosting, random forests, linear models, neural networks
-- **Optimization Metric**: R² coefficient of determination
-- **Cross-Validation**: 5-fold for consistent evaluation methodology
+### Data Processing Pipeline
+- **Quality Assessment**: Comprehensive missing value and outlier analysis
+- **Cleaning Logic**: Price filtering (€5-€1000), geographic validation, text standardization
+- **Feature Engineering**: 5 derived business metrics from raw data
+- **Export Process**: Clean CSV generation for Power BI dashboard integration
+
+### Machine Learning Architecture
+- **Feature Selection**: Geographic clustering (8 clusters), categorical encoding
+- **Model Training**: Scikit-learn pipeline with proper train/test splitting
+- **Evaluation**: R², MAE, RMSE with residual analysis
+- **Interpretation**: Feature importance ranking and model explainability
+
+### Power BI Integration
+- **Clean Data Export**: `listings_cleaned.csv` with 23 optimized columns
+- **Text Processing**: Line feed removal for seamless import
+- **Business Metrics**: Pre-calculated KPIs for dashboard creation
+- **Data Types**: Proper datetime and numeric formatting for visualization
 
 ## 📈 Business Applications
 
-### For Airbnb Hosts
-- **Dynamic Pricing**: Data-driven price optimization strategies
-- **Market Positioning**: Competitive analysis and differentiation opportunities
-- **Property Investment**: ROI analysis for new listing locations
-- **Seasonal Planning**: Revenue optimization through calendar management
+### Strategic Recommendations
 
-### For Real Estate Investors
-- **Market Analysis**: Neighborhood-level investment opportunities
-- **Risk Assessment**: Price volatility and market stability indicators
-- **Portfolio Optimization**: Diversification strategies across property types
-- **Performance Benchmarking**: Comparative market analysis tools
+#### For New Hosts
+1. **Location Strategy**: Focus on central districts for premium pricing potential
+2. **Property Optimization**: Entire homes generate highest returns (€160+ avg vs €80 private rooms)
+3. **Review Building**: Prioritize guest experience for review accumulation and pricing power
+4. **Activity Management**: Maintain <300 days availability for active listing classification
 
-### For Platform Management
-- **Market Insights**: Supply-demand dynamics across Berlin districts
-- **Host Support**: Automated pricing recommendations and market guidance
-- **Quality Control**: Outlier detection and pricing anomaly identification
-- **Strategic Planning**: Market expansion and regulatory compliance analysis
+#### For Investors
+1. **Market Entry**: Target emerging neighborhoods with growth potential
+2. **Portfolio Strategy**: Consider multi-listing approach for operational efficiency
+3. **Property Types**: Entire homes offer best risk-adjusted returns
+4. **Performance Monitoring**: Use experience and activity metrics for optimization
 
-## 🔍 Advanced Features
+#### For Policy Makers
+1. **Market Regulation**: Monitor concentration in central districts
+2. **Housing Impact**: Balance tourism benefits with residential needs
+3. **Quality Standards**: Support review-based quality improvement initiatives
+4. **Tax Strategy**: Consider location-based taxation structures
 
-### Automated Model Comparison
-- **Performance Benchmarking**: Systematic comparison across ML approaches
-- **Resource Efficiency**: Training time vs. performance trade-off analysis
-- **Deployment Readiness**: Model size, inference speed, and scalability assessment
-- **Interpretability Analysis**: Feature importance consistency across methods
+### Power BI Dashboard Applications
+- **Real-time Market Analysis**: Interactive district and pricing visualizations
+- **Host Performance Tracking**: Experience level and activity monitoring
+- **Investment Decision Support**: ROI modeling and opportunity identification
+- **Regulatory Compliance**: Market concentration and policy impact analysis
 
-### Production Deployment Considerations
-- **Model Serialization**: Pickle/joblib export for production systems
-- **API Integration**: REST endpoint configuration for real-time predictions
-- **Monitoring Setup**: Performance drift detection and model retraining triggers
-- **Scalability Architecture**: Distributed inference and batch processing capabilities
+## 🔍 Technical Highlights
 
-## 🚀 Future Enhancements
+### Professional Data Science Workflow
+- **Data Quality Focus**: Systematic missing value handling and outlier detection
+- **Business-Driven Feature Engineering**: Metrics aligned with stakeholder needs
+- **Model Validation**: Proper train/test splits with performance evaluation
+- **Reproducible Analysis**: Clear documentation and code organization
 
-### Advanced Analytics
-- **Time Series Forecasting**: Seasonal trend prediction and market cycle analysis
-- **Natural Language Processing**: Review sentiment analysis for pricing impact
-- **Computer Vision**: Property image analysis for amenity detection
-- **External Data Integration**: Economic indicators, events, and tourism patterns
+### Power BI Integration Excellence
+- **Clean Data Export**: Professional CSV generation with optimized structure
+- **Text Processing**: Line feed character removal for seamless import
+- **Business Intelligence**: Pre-calculated KPIs and derived metrics
+- **Dashboard Ready**: Proper data types and formatting for visualization
 
-### Machine Learning Improvements
-- **Deep Learning**: Neural network architectures for complex pattern recognition
-- **Ensemble Methods**: Advanced stacking and blending techniques
-- **Online Learning**: Continuous model updates with streaming data
-- **Causal Inference**: Understanding true drivers vs. correlational factors
+## 🚀 Future Development Opportunities
 
-### Business Intelligence
-- **Interactive Dashboards**: Real-time market monitoring with Plotly Dash
-- **Alerting Systems**: Automated notifications for pricing opportunities
-- **Scenario Modeling**: What-if analysis for investment decisions
-- **Competitive Intelligence**: Cross-platform price comparison and market positioning
+### Enhanced Analysis
+- **Temporal Patterns**: Seasonal pricing analysis and trend forecasting
+- **External Factors**: Integration with Berlin events, transportation, and economic data
+- **Advanced ML**: Ensemble methods and hyperparameter optimization
+- **Geospatial Analysis**: Neighborhood boundary analysis with geographic data
+
+### Business Intelligence Expansion
+- **Interactive Dashboards**: Real-time market monitoring capabilities
+- **Predictive Analytics**: Demand forecasting and revenue optimization
+- **Competitive Analysis**: Cross-platform pricing and market positioning
+- **Automated Reporting**: Scheduled insights and performance tracking
 
 ## 🤝 Contributing
 
@@ -280,15 +250,23 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Scikit-learn** ecosystem for foundational ML tools
 - **Plotly & Seaborn** for advanced visualization capabilities
 
-## 📧 Contact
+## 📧 Contact & Portfolio
 
-For questions, suggestions, or collaboration opportunities:
-- **Project Repository**: [https://github.com/SW-oasen/airbnb-eda-berlin](https://github.com/SW-oasen/airbnb-eda-berlin)
-- **Documentation**: [Project Wiki](https://github.com/SW-oasen/airbnb-eda-berlin/wiki)
-- **Issues & Support**: [GitHub Issues](https://github.com/SW-oasen/airbnb-eda-berlin/issues)
+**Portfolio Website**: https://sw-oasen.github.io/yuchuan-portfolio/#projects
+
+For questions, collaboration, or professional opportunities:
+- **GitHub Repository**: [Berlin Airbnb Analysis](https://github.com/SW-oasen/airbnb-eda-berlin)
+- **LinkedIn**: Connect for professional networking and opportunities
+- **Email**: Available through portfolio website contact form
 
 ---
 
-**Built with ❤️ for the Berlin data science community**
+**Professional Data Science Portfolio Project**
 
-*This project demonstrates professional-grade data science workflows suitable for production deployment in real estate, hospitality, and financial technology applications.*
+*This analysis demonstrates end-to-end data science capabilities including data cleaning, exploratory analysis, machine learning, and business intelligence visualization suitable for real estate, hospitality, and consulting applications.*
+
+### Project Impact
+- **Market Intelligence**: Actionable insights for €1.1B+ rental market
+- **Technical Excellence**: Professional-grade data pipeline and analysis
+- **Business Value**: Strategic recommendations for multiple stakeholder groups
+- **Visualization**: Interactive Power BI dashboard for decision support
