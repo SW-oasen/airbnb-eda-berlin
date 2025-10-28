@@ -1,0 +1,442 @@
+{
+  "report_title": "Berlin Airbnb Market Analysis",
+  "theme": {
+    "primary_color": "#FF5A5F",
+    "secondary_color": "#00A699",
+    "accent_color": "#FC642D",
+    "background_color": "#FFFFFF",
+    "text_color": "#484848",
+    "grid_color": "#EBEBEB"
+  },
+  "pages": [
+    {
+      "page_name": "Executive Summary",
+      "page_order": 1,
+      "background_color": "#FFFFFF",
+      "visuals": [
+        {
+          "visual_type": "Card",
+          "title": "Total Listings",
+          "position": {"x": 0, "y": 0, "width": 200, "height": 100},
+          "data_field": "COUNT(listings_cleaned[id])",
+          "formatting": {
+            "font_size": 36,
+            "font_color": "#484848",
+            "background_color": "#F7F7F7",
+            "border_color": "#EBEBEB"
+          }
+        },
+        {
+          "visual_type": "Card",
+          "title": "Average Price",
+          "position": {"x": 220, "y": 0, "width": 200, "height": 100},
+          "data_field": "[Average Price]",
+          "formatting": {
+            "font_size": 36,
+            "font_color": "#FF5A5F",
+            "background_color": "#F7F7F7",
+            "display_units": "None",
+            "decimal_places": 0
+          }
+        },
+        {
+          "visual_type": "Card",
+          "title": "Average Availability",
+          "position": {"x": 440, "y": 0, "width": 200, "height": 100},
+          "data_field": "[Average Availability]",
+          "formatting": {
+            "font_size": 36,
+            "font_color": "#00A699",
+            "background_color": "#F7F7F7",
+            "suffix": " days"
+          }
+        },
+        {
+          "visual_type": "Card",
+          "title": "Superhost %",
+          "position": {"x": 660, "y": 0, "width": 200, "height": 100},
+          "data_field": "[Superhosts Percentage]",
+          "formatting": {
+            "font_size": 36,
+            "font_color": "#FC642D",
+            "background_color": "#F7F7F7",
+            "suffix": "%",
+            "decimal_places": 1
+          }
+        },
+        {
+          "visual_type": "Column Chart",
+          "title": "Price Distribution by Category",
+          "position": {"x": 0, "y": 120, "width": 420, "height": 300},
+          "axis_config": {
+            "x_axis": "price_category",
+            "y_axis": "COUNT(listings_cleaned[id])",
+            "sort_order": "price_category ASC"
+          },
+          "formatting": {
+            "data_colors": ["#FF5A5F", "#FF8E91", "#00A699", "#4ECDC4"],
+            "show_data_labels": true,
+            "x_axis_title": "Price Category",
+            "y_axis_title": "Number of Listings"
+          }
+        },
+        {
+          "visual_type": "Map",
+          "title": "Listings Distribution Across Berlin",
+          "position": {"x": 440, "y": 120, "width": 420, "height": 300},
+          "location_fields": {
+            "latitude": "listings_cleaned[latitude]",
+            "longitude": "listings_cleaned[longitude]"
+          },
+          "formatting": {
+            "bubble_size": "listings_cleaned[number_of_reviews]",
+            "bubble_color": "listings_cleaned[price]",
+            "color_scale": "Red to Green",
+            "default_zoom": 10,
+            "map_style": "Road"
+          }
+        },
+        {
+          "visual_type": "Donut Chart",
+          "title": "Room Type Distribution",
+          "position": {"x": 0, "y": 440, "width": 280, "height": 250},
+          "data_config": {
+            "legend": "listings_cleaned[room_type]",
+            "values": "COUNT(listings_cleaned[id])"
+          },
+          "formatting": {
+            "data_colors": ["#FF5A5F", "#00A699", "#FC642D", "#FFB400"],
+            "show_percentages": true,
+            "legend_position": "Right"
+          }
+        },
+        {
+          "visual_type": "Gauge",
+          "title": "Average Occupancy Rate",
+          "position": {"x": 300, "y": 440, "width": 280, "height": 250},
+          "data_field": "[Occupancy Rate]",
+          "formatting": {
+            "min_value": 0,
+            "max_value": 100,
+            "target_value": 70,
+            "color_ranges": [
+              {"min": 0, "max": 30, "color": "#FF6B6B"},
+              {"min": 30, "max": 70, "color": "#FFE066"},
+              {"min": 70, "max": 100, "color": "#51CF66"}
+            ]
+          }
+        },
+        {
+          "visual_type": "Bar Chart",
+          "title": "Top 5 Districts by Average Price",
+          "position": {"x": 600, "y": 440, "width": 260, "height": 250},
+          "axis_config": {
+            "x_axis": "[Average Price]",
+            "y_axis": "listings_cleaned[neighbourhood_group]",
+            "sort_order": "[Average Price] DESC",
+            "top_n": 5
+          },
+          "formatting": {
+            "data_color": "#FF5A5F",
+            "show_data_labels": true,
+            "x_axis_title": "Average Price (€)"
+          }
+        }
+      ]
+    },
+    {
+      "page_name": "Geographic Analysis",
+      "page_order": 2,
+      "background_color": "#FFFFFF",
+      "visuals": [
+        {
+          "visual_type": "Filled Map",
+          "title": "Price Heatmap by District",
+          "position": {"x": 0, "y": 0, "width": 600, "height": 400},
+          "location_field": "listings_cleaned[neighbourhood_group]",
+          "color_field": "[Average Price]",
+          "formatting": {
+            "color_scale": "Red to Yellow to Green",
+            "show_labels": true,
+            "border_color": "#484848"
+          }
+        },
+        {
+          "visual_type": "Table",
+          "title": "District Summary Statistics",
+          "position": {"x": 620, "y": 0, "width": 340, "height": 400},
+          "columns": [
+            {"field": "listings_cleaned[neighbourhood_group]", "title": "District"},
+            {"field": "COUNT(listings_cleaned[id])", "title": "Listings"},
+            {"field": "[Average Price]", "title": "Avg Price", "format": "€#,##0"},
+            {"field": "[Median Price]", "title": "Median Price", "format": "€#,##0"},
+            {"field": "[Average Availability]", "title": "Avg Avail", "format": "#,##0"}
+          ],
+          "formatting": {
+            "font_size": 10,
+            "alternating_row_colors": true,
+            "header_color": "#FF5A5F",
+            "header_text_color": "#FFFFFF"
+          }
+        },
+        {
+          "visual_type": "Bar Chart",
+          "title": "Top 15 Neighborhoods by Average Price",
+          "position": {"x": 0, "y": 420, "width": 480, "height": 280},
+          "axis_config": {
+            "x_axis": "[Average Price]",
+            "y_axis": "listings_cleaned[neighbourhood_cleansed]",
+            "sort_order": "[Average Price] DESC",
+            "top_n": 15
+          },
+          "formatting": {
+            "data_color": "#00A699",
+            "show_data_labels": true,
+            "x_axis_title": "Average Price (€)",
+            "y_axis_title": "Neighborhood"
+          }
+        },
+        {
+          "visual_type": "Scatter Chart",
+          "title": "Price vs Availability by District",
+          "position": {"x": 500, "y": 420, "width": 460, "height": 280},
+          "axis_config": {
+            "x_axis": "listings_cleaned[availability_365]",
+            "y_axis": "listings_cleaned[price]",
+            "legend": "listings_cleaned[neighbourhood_group]",
+            "size": "listings_cleaned[number_of_reviews]"
+          },
+          "formatting": {
+            "x_axis_title": "Availability (days)",
+            "y_axis_title": "Price (€)",
+            "show_trend_line": true,
+            "data_colors": ["#FF5A5F", "#00A699", "#FC642D", "#FFB400", "#767676"]
+          }
+        }
+      ]
+    },
+    {
+      "page_name": "Host Analysis",
+      "page_order": 3,
+      "background_color": "#FFFFFF",
+      "visuals": [
+        {
+          "visual_type": "Clustered Bar Chart",
+          "title": "Superhost vs Regular Host Performance",
+          "position": {"x": 0, "y": 0, "width": 500, "height": 300},
+          "axis_config": {
+            "x_axis": "listings_cleaned[host_is_superhost]",
+            "y_axis": ["[Average Price]", "[Average Rating]", "[Reviews per Month]"],
+            "legend": "Metric"
+          },
+          "formatting": {
+            "data_colors": ["#FF5A5F", "#00A699", "#FC642D"],
+            "show_data_labels": true,
+            "x_axis_title": "Host Type",
+            "legend_position": "Bottom"
+          }
+        },
+        {
+          "visual_type": "Histogram",
+          "title": "Host Listing Count Distribution",
+          "position": {"x": 520, "y": 0, "width": 440, "height": 300},
+          "data_field": "listings_cleaned[calculated_host_listings_count]",
+          "formatting": {
+            "bin_size": 1,
+            "data_color": "#FC642D",
+            "x_axis_title": "Number of Listings per Host",
+            "y_axis_title": "Number of Hosts"
+          }
+        },
+        {
+          "visual_type": "Line Chart",
+          "title": "Response Time vs Review Score",
+          "position": {"x": 0, "y": 320, "width": 460, "height": 280},
+          "axis_config": {
+            "x_axis": "listings_cleaned[host_response_time]",
+            "y_axis": "[Average Rating]"
+          },
+          "formatting": {
+            "line_color": "#00A699",
+            "marker_color": "#FF5A5F",
+            "show_markers": true,
+            "x_axis_title": "Response Time",
+            "y_axis_title": "Average Rating"
+          }
+        },
+        {
+          "visual_type": "Table",
+          "title": "Top 20 Hosts by Revenue Potential",
+          "position": {"x": 480, "y": 320, "width": 480, "height": 280},
+          "columns": [
+            {"field": "listings_cleaned[host_name]", "title": "Host Name"},
+            {"field": "COUNT(listings_cleaned[id])", "title": "Listings"},
+            {"field": "[Average Price]", "title": "Avg Price", "format": "€#,##0"},
+            {"field": "[Estimated Annual Revenue]", "title": "Est. Revenue", "format": "€#,##0"}
+          ],
+          "filtering": {
+            "top_n": 20,
+            "sort_by": "[Estimated Annual Revenue] DESC"
+          },
+          "formatting": {
+            "font_size": 9,
+            "alternating_row_colors": true,
+            "header_color": "#FC642D",
+            "header_text_color": "#FFFFFF"
+          }
+        }
+      ]
+    },
+    {
+      "page_name": "Price Prediction Insights",
+      "page_order": 4,
+      "background_color": "#FFFFFF",
+      "visuals": [
+        {
+          "visual_type": "Horizontal Bar Chart",
+          "title": "Feature Importance for Price Prediction",
+          "position": {"x": 0, "y": 0, "width": 480, "height": 350},
+          "note": "This data should come from ML model results - create manually based on notebook findings",
+          "sample_data": [
+            {"feature": "Room Type", "importance": 0.35},
+            {"feature": "District Location", "importance": 0.28},
+            {"feature": "Accommodates", "importance": 0.15},
+            {"feature": "Number of Reviews", "importance": 0.12},
+            {"feature": "Availability", "importance": 0.10}
+          ],
+          "formatting": {
+            "data_color": "#FF5A5F",
+            "show_data_labels": true,
+            "x_axis_title": "Feature Importance",
+            "y_axis_title": "Features"
+          }
+        },
+        {
+          "visual_type": "Scatter Chart",
+          "title": "Predicted vs Actual Prices",
+          "position": {"x": 500, "y": 0, "width": 460, "height": 350},
+          "note": "Create calculated column with predicted prices based on model",
+          "axis_config": {
+            "x_axis": "listings_cleaned[price]",
+            "y_axis": "predicted_price_column",
+            "size": "listings_cleaned[number_of_reviews]"
+          },
+          "formatting": {
+            "data_color": "#00A699",
+            "show_trend_line": true,
+            "trend_line_color": "#FF5A5F",
+            "x_axis_title": "Actual Price (€)",
+            "y_axis_title": "Predicted Price (€)"
+          }
+        },
+        {
+          "visual_type": "Box Plot",
+          "title": "Price Distribution by Room Type",
+          "position": {"x": 0, "y": 370, "width": 480, "height": 280},
+          "axis_config": {
+            "x_axis": "listings_cleaned[room_type]",
+            "y_axis": "listings_cleaned[price]"
+          },
+          "formatting": {
+            "box_colors": ["#FF5A5F", "#00A699", "#FC642D", "#FFB400"],
+            "show_outliers": true,
+            "x_axis_title": "Room Type",
+            "y_axis_title": "Price (€)"
+          }
+        },
+        {
+          "visual_type": "Multi-row Card",
+          "title": "Model Performance Metrics",
+          "position": {"x": 500, "y": 370, "width": 460, "height": 280},
+          "note": "Create measures based on your model results from notebooks",
+          "cards": [
+            {"title": "R-Squared", "value": "0.72", "subtitle": "Model explains 72% of price variance"},
+            {"title": "Mean Absolute Error", "value": "€31", "subtitle": "Average prediction error"},
+            {"title": "Root Mean Square Error", "value": "€45", "subtitle": "Standard prediction error"},
+            {"title": "Mean Absolute % Error", "value": "24%", "subtitle": "Relative prediction accuracy"}
+          ],
+          "formatting": {
+            "card_background": "#F7F7F7",
+            "title_color": "#484848",
+            "value_color": "#FF5A5F",
+            "subtitle_color": "#767676"
+          }
+        }
+      ]
+    }
+  ],
+  "slicers": [
+    {
+      "slicer_type": "Date Range",
+      "title": "Last Review Date Range",
+      "field": "listings_cleaned[last_review]",
+      "default_selection": "Last 2 Years",
+      "applies_to_pages": ["Executive Summary", "Geographic Analysis", "Host Analysis"]
+    },
+    {
+      "slicer_type": "Range",
+      "title": "Price Range",
+      "field": "listings_cleaned[price]",
+      "min_value": 0,
+      "max_value": 500,
+      "applies_to_pages": ["Executive Summary", "Geographic Analysis", "Price Prediction Insights"]
+    },
+    {
+      "slicer_type": "Multi-select Dropdown",
+      "title": "Room Type",
+      "field": "listings_cleaned[room_type]",
+      "default_selection": "All",
+      "applies_to_pages": ["Executive Summary", "Geographic Analysis", "Host Analysis", "Price Prediction Insights"]
+    },
+    {
+      "slicer_type": "Hierarchy",
+      "title": "Location Filter",
+      "hierarchy": ["listings_cleaned[neighbourhood_group]", "listings_cleaned[neighbourhood_cleansed]"],
+      "default_selection": "All",
+      "applies_to_pages": ["Executive Summary", "Geographic Analysis", "Host Analysis"]
+    }
+  ],
+  "interactions": {
+    "cross_page_filtering": true,
+    "sync_slicers": ["Price Range", "Room Type", "Location Filter"],
+    "drill_through_pages": [
+      {
+        "from_page": "Executive Summary",
+        "to_page": "Geographic Analysis",
+        "drill_field": "listings_cleaned[neighbourhood_group]"
+      },
+      {
+        "from_page": "Geographic Analysis",
+        "to_page": "Host Analysis",
+        "drill_field": "listings_cleaned[host_id]"
+      }
+    ]
+  },
+  "conditional_formatting": [
+    {
+      "applies_to": "Table visuals with price columns",
+      "rules": [
+        {"condition": "Above average", "color": "#FF6B6B", "icon": "▲"},
+        {"condition": "Below average", "color": "#51CF66", "icon": "▼"}
+      ]
+    },
+    {
+      "applies_to": "Occupancy rate measures",
+      "rules": [
+        {"condition": ">= 70%", "color": "#51CF66"},
+        {"condition": "50-69%", "color": "#FFE066"},
+        {"condition": "< 50%", "color": "#FF6B6B"}
+      ]
+    }
+  ],
+  "mobile_layout": {
+    "optimize_for_mobile": true,
+    "mobile_page_order": ["Executive Summary", "Geographic Analysis", "Host Analysis", "Price Prediction Insights"],
+    "mobile_visual_priorities": [
+      "KPI Cards",
+      "Key Charts",
+      "Summary Tables",
+      "Detailed Analysis"
+    ]
+  }
+}
